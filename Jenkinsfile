@@ -16,6 +16,9 @@ pipeline {
     }
 
     stage('package') {
+      when {
+        branch 'master'
+      }
       steps {
         echo 'packaging the build'
         sh 'mvn package -DskipTests'
@@ -23,6 +26,9 @@ pipeline {
     }
 
     stage('archival') {
+      when {
+        branch 'master'
+      }
       steps {
         archiveArtifacts 'target/*.war'
         echo 'Artifacts Archived'
